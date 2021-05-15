@@ -33,17 +33,14 @@ const getTopEarnersController = async (req, res, next) => {
 
 // CALLBACK for validating the user's answer and updating the DB
 const postTriviaController = async (req, res, next) => {
+  // console.log(req.body); //DEBUG
+
   // Retrieve 'trivia' document by id
   let triviaEntry;
   try {
     triviaEntry = await Trivia.findById(req.body.qid);
   } catch (err) {
-    return next(
-      new httpError(
-        "Failed verify the user's answer due to internal error",
-        500
-      )
-    );
+    return next(new httpError("Failed verify the user's answer due to internal error", 500));
   }
 
   // Check if the user supplied answer is correct. If answer is wrong, return response with $isAnswerCorrect === false
@@ -58,12 +55,7 @@ const postTriviaController = async (req, res, next) => {
   try {
     topEarners = await TopEarner.find();
   } catch (err) {
-    return next(
-      new httpError(
-        "Failed verify the user's answer due to internal error",
-        500
-      )
-    );
+    return next(new httpError("Failed verify the user's answer due to internal error", 500));
   }
 
   // Check if current user is already on the 'top earners' list by search with $userName, $userDate and $cookieCount
@@ -99,14 +91,7 @@ const postTriviaController = async (req, res, next) => {
 
     new TopEarner(currentTopEarner) //Update the document in the db now
       .save()
-      .catch(err =>
-        next(
-          new httpError(
-            "An error occured while trying to save a document to the database",
-            500
-          )
-        )
-      );
+      .catch(err => next(new httpError("An error occured while trying to save a document to the database", 500)));
 
     return;
   }
@@ -129,12 +114,7 @@ const postTriviaController = async (req, res, next) => {
   if (req.body.cookiesEarned < lastTopEarner.cookieCount) switchBranch = "C";
 
   if (switchBranch === "A") {
-    return next(
-      new httpError(
-        "There seems to be something wrong with your request..",
-        400
-      )
-    );
+    return next(new httpError("There seems to be something wrong with your request..", 400));
   }
 
   if (switchBranch === "B") {
@@ -150,24 +130,14 @@ const postTriviaController = async (req, res, next) => {
       cookieCount: req.body.cookiesEarned + 1,
       userName: req.body.userName,
       userDate: req.body.userDate
-    }).catch(err =>
-      next(
-        new httpError(
-          "Something went wrong while trying to update a document",
-          500
-        )
-      )
-    );
+    }).catch(err => next(new httpError("Something went wrong while trying to update a document", 500)));
 
     return;
   }
 
   if (switchBranch === "C") {
     ++req.body.cookiesEarned;
-    if (
-      req.body.cookiesEarned === lastTopEarner.cookieCount &&
-      req.body.userDate < lastTopEarner.userDate
-    ) {
+    if (req.body.cookiesEarned === lastTopEarner.cookieCount && req.body.userDate < lastTopEarner.userDate) {
       res.status(200);
       res.json({
         isAnswerCorrect: true,
@@ -180,14 +150,7 @@ const postTriviaController = async (req, res, next) => {
         cookieCount: req.body.cookiesEarned,
         userName: req.body.userName,
         userDate: req.body.userDate
-      }).catch(err =>
-        next(
-          new httpError(
-            "Something went wrong while trying to update a document",
-            500
-          )
-        )
-      );
+      }).catch(err => next(new httpError("Something went wrong while trying to update a document", 500)));
     } else {
       res.status(200);
       res.json({
