@@ -1,0 +1,271 @@
+[
+	{
+		question: "In Greek Mythology, who killed Achilles?",
+		answer: "paris"
+	},
+	{
+		question: ".rs is the top-level domain for what country?",
+		answer: "serbia"
+	},
+	{
+		question: "What is the longest edge of a right-angled triangle called?",
+		answer: "hypotenuse"
+	},
+	{
+		question: "Where did the dog breed 'Chihuahua' originate?",
+		answer: "mexico"
+	},
+	{
+		question: "What is the name of the main character in the game 'Grand Theft Auto: San Andreas'?",
+		answer: "cj"
+	},
+	{
+		question: "What is the capital of Australia?",
+		answer: "canberra"
+	},
+	{
+		question: "What is the name of the top encryption cypher used by the German military during WWII?",
+		answer: "enigma"
+	},
+	{
+		question: "In what year did the United States of America declare its independence?",
+		answer: "1776"
+	},
+	{
+		question: "The architect known as Le Corbusier was an important figure in what style of architecture?",
+		answer: "modernism"
+	},{
+		question: "Please spell the number '10'",
+		answer: "ten"
+	},{
+		question: "In what year did World War Two start in Europe?",
+		answer: "1939"
+	},
+	{
+		question: "In what yeat did World War Two officially end?",
+		answer: "1945"
+	},
+	{
+		question: "What was the capital city of the Byzantine Empire?",
+		answer: "constantinople"
+	},
+	{
+		question: "In antiquity, who was the Carthaginian general that crossed the Alps to make war with Rome?",
+		answer: "hannibal"
+	},
+	{
+		question: "Who is the author of the Greek literary classic 'The Iliad'?",
+		answer: "homer"
+	},
+	{
+		question: "In Greek mythology, who is the god of war?",
+		answer: "ares"
+	},
+	{
+		question: "In Greek mythology, who is the goddess of wisdom?",
+		answer: "athena"
+	},
+	{
+		question: "In Greek mythology, who is the god of the underworld?",
+		answer: "hades"
+	},
+	{
+		question: "In Greek mythology, who is considered the messenger of the gods?",
+		answer: "hermes"
+	},{
+		question: "In Greek mythology, who is the god of the sea?",
+		answer: "poseidon"
+	},{
+		question: "In Greek mythology, who is the god of thunder and lightning?",
+		answer: "zeus"
+	},
+	{
+		question: "In what year did the Western Roman Empire fall?",
+		answer: "476"
+	},
+	{
+		question: "What was the capital city of the Byzantine Empire?",
+		answer: "constantinople"
+	},
+	{
+		question: "What is the capital city of Peru?",
+		answer: "lima"
+	},
+	{
+		question: "What is the capital city of Colombia (the country)?",
+		answer: "bogota"
+	},
+	{
+		question: "What is the capital city of Canada?",
+		answer: "ottawa"
+	},
+	{
+		question: "What is the capital city of Germany?",
+		answer: "berlin"
+	},
+	{
+		question: "What is the capital city of the United Kingdoms?",
+		answer: "london"
+	},
+	{
+		question: "What is the capital city of Ireland?",
+		answer: "dublin"
+	},{
+		question: "What is the capital city of Finland?",
+		answer: "helsinki"
+	},{
+		question: "What is the capital city of Norway?",
+		answer: "oslo"
+	},
+	{
+		question: "What is the capital city of Sweden?",
+		answer: "stockholm"
+	},
+	{
+		question: "What is the capital city of China?",
+		answer: "beijing"
+	},
+	{
+		question: "What is the capital city of South Korea?",
+		answer: "seoul"
+	},
+	{
+		question: "What is the capital city of Japan?",
+		answer: "tokyo"
+	},
+	{
+		question: "What is the capital city of Canada?",
+		answer: "ottawa"
+	},
+	{
+		question: "What is the capital city of Egypt?",
+		answer: "cairo"
+	},
+	{
+		question: "What is the capital city of Sudan?",
+		answer: "khartoum"
+	},
+	{
+		question: "What is the capital city of Venezuela?",
+		answer: "caracas"
+	},{
+		question: "What is the capital city of Cuba?",
+		answer: "havana"
+	},{
+		question: "What is the capital city of Spain?",
+		answer: "madrid"
+	},
+	{
+		question: "What is the capital city of portugal?",
+		answer: "lisbon"
+	},
+	{
+		question: "What is the official language of Brazil?",
+		answer: "portuguese"
+	},
+	{
+		question: "What is the capital city of Cyprus?",
+		answer: "nicosia"
+	},
+	{
+		question: "Which planet is the closest to the Sun?",
+		answer: "mercury"
+	},
+	{
+		question: "What is the name of the chemical element represented by the symbol 'K'?",
+		answer: "potassium"
+	},
+	{
+		question: "What is the name of the chemical element represented by the symbol 'Na'?",
+		answer: "sodium"
+	},
+	{
+		question: "What is the name of the chemical element represented by the symbol 'Pb'?",
+		answer: "lead"
+	},
+	{
+		question: "What is the name of the chemical element represented by the symbol 'Sn'?",
+		answer: "tin"
+	},{
+		question: "What is the name of the chemical element represented by the symbol 'P'?",
+		answer: "phosphorus"
+	},{
+		question: "The Los Angeles Dodgers were originally from what U.S. city?",
+		answer: "brooklyn"
+	},
+	{
+		question: "What is the capital city of New Zealand?",
+		answer: "wellington"
+	},
+	{
+		question: "What is the name of Toronto's NBA team?",
+		answer: "raptors"
+	},
+	{
+		question: "What is the name of Denver's NBA team?",
+		answer: "nuggets"
+	},
+	{
+		question: "What is the name of San Antonio's NBA team?",
+		answer: "spurs"
+	},
+	{
+		question: "What is the name of Boston's NBA team?",
+		answer: "celtics"
+	},
+	{
+		question: "In Super Mario Bros., who informs Mario that the princess is in another castle?",
+		answer: "toad"
+	},
+	{
+		question: "In Marvel Comics, what material is Captain America's shield made of?",
+		answer: "vibranium"
+	},
+	{
+		question: "In Marvel Comics, what material is Wolverine's skeleton made of?",
+		answer: "adamantium"
+	},{
+		question: "In Marvel Comics, what material is Thor's hammer made of?",
+		answer: "uru"
+	},{
+		question: "In the Pixar film, 'Toy Story', what was the name of the child who owned the toys?",
+		answer: "andy"
+	},
+	{
+		question: "Which is the longest bone in the human body?",
+		answer: "femur"
+	},
+	{
+		question: "True or false? A caterpillar has more muscles than humans do.",
+		answer: "true"
+	},
+	{
+		question: "What is the main ship used by Commander Shepard in the Mass Effect Franchise called?",
+		answer: "normandy"
+	},
+	{
+		question: "In what year was the game 'Fallout' released?",
+		answer: "1997"
+	},
+	{
+		question: "What prime number comes next after 19?",
+		answer: "23"
+	},
+	{
+		question: "True or false? In 'Star Trek', Klingons are aliens.",
+		answer: "true"
+	},
+	{
+		question: "True or false? An Astronomical Unit is the distance between Earth and the Moon.",
+		answer: "false"
+	},
+	{
+		question: "What is the code name for the mobile operating system Android 7.0?",
+		answer: "nougat"
+	},{
+		question: "How is a polygon with 12 sides called?",
+		answer: "dodecagon"
+	}
+]
+
+// Question Count at This Mark: 70

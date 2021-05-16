@@ -2,6 +2,20 @@ const Trivia = require("./models/trivia");
 const TopEarner = require("./models/topEarner");
 const httpError = require("./models/httpError");
 
+// Utility function for generating fortune messages
+const generateFortuneMessage = () => {
+  let chance = Math.random();
+  if (chance <= 0.1) return "There was a 10% probability of getting this message. Congratulations, you are indeed very lucky!!";
+  if (chance <= 0.15)
+    return "There was a 5% probability of getting this message. This is actually quite impressive luck!! Congratulations! Please have nice day.";
+  if (chance <= 0.64) return "There was a 49% probability of getting this message. Fairly normal.";
+  return `Your lucky numbers are ${Math.floor(Math.random() * 101)}-${Math.floor(Math.random() * 101)}-${Math.floor(
+    Math.random() * 101
+  )}-${Math.floor(Math.random() * 101)}-${Math.floor(Math.random() * 101)}-${Math.floor(Math.random() * 101)}-${Math.floor(
+    Math.random() * 101
+  )}-${Math.floor(Math.random() * 101)}.`;
+};
+
 // CALLBACK for fetching a random document from the DB
 const getTriviaController = async (req, res, next) => {
   let trivia;
@@ -85,7 +99,7 @@ const postTriviaController = async (req, res, next) => {
     res.json({
       isAnswerCorrect: true,
       cookieContentType: "message",
-      value: "Your lucky numbers are 1-2-3",
+      value: generateFortuneMessage(),
       topRank: topEarners.indexOf(currentTopEarner) + 1
     });
 
@@ -96,17 +110,14 @@ const postTriviaController = async (req, res, next) => {
     return;
   }
 
-  // (if current user is not already on the list) Compare request's $cookiesEarned field with the $cookieCount field of the last document of the sorted list of "top earners"
-  topEarners.sort((a, b) => {
-    if (a.cookieCount > b.cookieCount) return -1;
-    if (a.cookieCount < b.cookieCount) return 1;
-    if (a.userDate < b.userDate) return -1;
-    if (a.userDate > b.userDate) return 1;
+  // (if current user is not already on the list) Compare request's $cookiesEarned field with the $cookieCount field of the "last ranked" document of the sorted list of "top earners"
+  const lastTopEarner = topEarners.reduce((acc, b) => {
+    if (acc.cookieCount > b.cookieCount) return b;
+    if (acc.cookieCount < b.cookieCount) return acc;
+    if (acc.userDate < b.userDate) return b;
+    if (acc.userDate > b.userDate) return acc;
+    return acc;
   });
-
-  const lastTopEarner = topEarners[topEarners.length - 1];
-  //   console.log(lastTopEarner);
-  //   console.log(`req.body.cookiesEarned: ${req.body.cookiesEarned}`);
 
   let switchBranch;
   if (req.body.cookiesEarned > lastTopEarner.cookieCount) switchBranch = "A";
@@ -118,19 +129,35 @@ const postTriviaController = async (req, res, next) => {
   }
 
   if (switchBranch === "B") {
+    const newRankedUser = {
+      cookieCount: req.body.cookiesEarned + 1,
+      userName: req.body.userName,
+      userDate: req.body.userDate
+    };
+
+    // Replace the the $lastTopEarner in array $topEarners with $newRankedUser, then resort $topEarners (this step is necessary because the new rank of $newRankedUser may be higher than the last rank).
+    const IndexOfLastTopEarner = topEarners.indexOf(lastTopEarner);
+    topEarners.splice(IndexOfLastTopEarner, 1, newRankedUser);
+    topEarners.sort((a, b) => {
+      if (a.cookieCount > b.cookieCount) return -1;
+      if (a.cookieCount < b.cookieCount) return 1;
+      if (a.userDate < b.userDate) return -1;
+      if (a.userDate > b.userDate) return 1;
+      return -1;
+    });
+
     res.status(200);
     res.json({
       isAnswerCorrect: true,
       cookieContentType: "message",
-      value: "Your lucky numbers are 0-0-0",
-      topRank: topEarners.length
+      value: generateFortuneMessage(),
+      topRank: topEarners.indexOf(newRankedUser) + 1
     });
 
-    TopEarner.updateOne(lastTopEarner, {
-      cookieCount: req.body.cookiesEarned + 1,
-      userName: req.body.userName,
-      userDate: req.body.userDate
-    }).catch(err => next(new httpError("Something went wrong while trying to update a document", 500)));
+    // Update the entry in the DB
+    TopEarner.updateOne(lastTopEarner, newRankedUser).catch(err =>
+      next(new httpError("Something went wrong while trying to update a document", 500))
+    );
 
     return;
   }
@@ -138,25 +165,41 @@ const postTriviaController = async (req, res, next) => {
   if (switchBranch === "C") {
     ++req.body.cookiesEarned;
     if (req.body.cookiesEarned === lastTopEarner.cookieCount && req.body.userDate < lastTopEarner.userDate) {
+      const newRankedUser = {
+        cookieCount: req.body.cookiesEarned,
+        userName: req.body.userName,
+        userDate: req.body.userDate
+      };
+
+      // Replace the the $lastTopEarner in array $topEarners with $newRankedUser, then resort $topEarners (this step is necessary because the new rank of $newRankedUser may be higher than the last rank).
+      const IndexOfLastTopEarner = topEarners.indexOf(lastTopEarner);
+      topEarners.splice(IndexOfLastTopEarner, 1, newRankedUser);
+      topEarners.sort((a, b) => {
+        if (a.cookieCount > b.cookieCount) return -1;
+        if (a.cookieCount < b.cookieCount) return 1;
+        if (a.userDate < b.userDate) return -1;
+        if (a.userDate > b.userDate) return 1;
+        return -1;
+      });
+
       res.status(200);
       res.json({
         isAnswerCorrect: true,
         cookieContentType: "message",
-        value: "Your lucky numbers are 1-1-1",
-        topRank: topEarners.length
+        value: generateFortuneMessage(),
+        topRank: topEarners.indexOf(newRankedUser) + 1
       });
 
-      TopEarner.updateOne(lastTopEarner, {
-        cookieCount: req.body.cookiesEarned,
-        userName: req.body.userName,
-        userDate: req.body.userDate
-      }).catch(err => next(new httpError("Something went wrong while trying to update a document", 500)));
+      // Update the entry in the DB
+      TopEarner.updateOne(lastTopEarner, newRankedUser).catch(err =>
+        next(new httpError("Something went wrong while trying to update a document", 500))
+      );
     } else {
       res.status(200);
       res.json({
         isAnswerCorrect: true,
         cookieContentType: "message",
-        value: "Your lucky numbers are 2-2-2",
+        value: generateFortuneMessage(),
         topRank: null
       });
     }
