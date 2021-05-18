@@ -22,3 +22,5 @@ Deployment:
 
 ## Attributions
 This project makes use of _node.js, npm, express, nodemon, mongoose_ and all their dependencies.
+
+Part of the content in the file ["database-data-sets/trivia-questions-production-set.txt"](database-data-sets/trivia-questions-production-set.txt) is sourced from "https://opentdb.com/" under CC BY-SA
