@@ -8,7 +8,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "microQZR",
+  "author": "Zi Han Meng <zi.han.meng100@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
     "express": "^4.17.1",
